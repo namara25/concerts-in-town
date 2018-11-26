@@ -33,10 +33,6 @@ public class EventsControllerTest {
 
     @Test
     public void getAllEvents() throws Exception {
-//        this.mockMvc.perform(get("/events?city=rennes&size=3")).andDo(print()).andExpect(status().isOk())
-//                .andExpect(content().contentType("application/json;charset=UTF-8"))
-//        .andExpect(jsonPath("content", hasSize(3)));
-
         this.mockMvc.perform(get("/events")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
     }
@@ -54,7 +50,7 @@ public class EventsControllerTest {
 
         ObjectMapper  objectMapper = new ObjectMapper();
         String eventToAddStr = objectMapper.writeValueAsString(eventToAdd);
-    this.mockMvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON_UTF8).content(eventToAddStr))
+        this.mockMvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON_UTF8).content(eventToAddStr))
                 .andDo(print()).andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
